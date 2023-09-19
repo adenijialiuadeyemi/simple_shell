@@ -49,15 +49,13 @@ return (st);
  */
 char *_strchr(char *strng, char ch)
 {
-do
-{
+do {
 if (*strng == ch)
 {
 break;
 }
-}
-while (*strng++);
-	return (strng);
+} while (*strng++);
+return (strng);
 }
 /**
  * _strncmp - The function comares n chars from the 2 strngs
