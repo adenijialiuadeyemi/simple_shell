@@ -1,6 +1,6 @@
 #include "main.h"
 /**
- * cmd prompt - The func print '$' to std output
+ * cmd_prompt - The func print '$' to std output
  *
  * Return: void
  */
