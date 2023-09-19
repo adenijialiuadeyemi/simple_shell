@@ -60,19 +60,6 @@ char *enter(char *strng)
 char *space(char *strng)
 void hashtag_treated(char *bufer)
 
-/* Struct for inbuilt cmds */
-
-/**
- * struct _inbuilt - This Defines a struct that contains built-in cmds and their implementation
- * @cmd: - Built-in cmd
- * @func: - aiming at created funcs that has same func as built in cmds
- */
-typedef struct _inbuilt
-{
-char *cmd;
-int (*func)(char **line, int cond);
-} inbuilt;
-
 /** Prototypes of functions that handles errors **/
 void print_error(char *user_input, int c, char **argv)
 void _prerror(char **argv, int c, char **cmd)
@@ -80,7 +67,7 @@ void error_file(char **argv, int c)
 
 /** The function for Builtin cmd handlers and exec */
 int check_builtin(char **cmd)
-int handle_builtin(char **cmd, int st)
+int handle_builtin(char **cmd, int cond)
 void exit_file_bool(char **cmd, char *user_input, char **argv, int c, int cond_exit)
 
 int change_dir(char **cmd, __attribute__((unused)) int cond)
@@ -90,11 +77,11 @@ int disp_hist(__attribute__((unused)) char **c, __attribute__((unused)) int cond
 
 /** environmental variable **/
 void free_env(char **env)
-void create_env(char **env) 
+void create_env(char **env)
 extern char **env_def;
 
 /** Prototype of functions that handle help **/
-void cd_help(void) 
+void cd_help(void)
 void help_help(void)
 void all_help(void)
 void alias_help(void)
@@ -121,6 +108,18 @@ char *_memcpy(char *destin, char *sorce, unsigned int n)
 void *fill_an_array(void *a, int el, unsigned int len)
 void *_calloc(unsigned int size)
 
+/* Struct for inbuilt cmds */
+
+/**
+ * struct _inbuilt - This Defines a struct that contains built-in cmds and their implementation
+ * @cmd: - Built-in cmd
+ * @func: - aiming at created funcs that has same func as built in cmds
+ */
+typedef struct _inbuilt
+{
+char *cmd;
+int (*func)(char **line, int cond);
+} inbuilt;i
 
 #endif
 
