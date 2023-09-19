@@ -1,12 +1,10 @@
 #include "main.h"
-
 /**
  * main - Star oint of the simple shell
  * @argc: Count of Arg
  * @argv: Arg vector
  * Return: status
  */
-
 int main(__attribute__((unused)) int argc, char **argv)
 {
 char *user_input, **cmd, **cmds;
@@ -16,7 +14,6 @@ int indx, cond = 0;
 if (argv[1] != NULL)
 	read_the_doc(argv[1], argv);
 signal(SIGINT, signal_to_be_treated);
-
 while (1)
 {
 count++;
@@ -42,9 +39,7 @@ free(cmd);
 continue;
 }
 else
-{
-cond = check_cmd(cmd, user_input, count, argv);
-}
+	cond = check_cmd(cmd, user_input, count, argv);
 free(cmd);
 }
 free(user_input);
