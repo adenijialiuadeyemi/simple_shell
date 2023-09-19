@@ -7,7 +7,6 @@ char *_getline()
 {
 int i, res_read, bufer_size = BUFSIZE;
 char ch = 0, *bufer, *buf;
-
 bufer = malloc(bufer_size);
 if (bufer == NULL)
 {
@@ -69,8 +68,9 @@ if (bufer == NULL)
 free(bufer);
 return (NULL);
 }
-for (i = 0; strng[i] == ' '; i++);
-	for (; strng[i + 1] != '\0'; i++)
+for (i = 0; strng[i] == ' '; i++)
+;
+for (; strng[i + 1] != '\0'; i++)
 {
 bufer[j] = strng[i];
 j++;
