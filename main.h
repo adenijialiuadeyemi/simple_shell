@@ -88,7 +88,7 @@ void alias_help(void)
 void exit_help(void)
 void env_help(void)
 void unsetenv_help(void)
-int display_help(char **cmd, __attribute__((unused)) int cond)
+int show_help(char **cmd, __attribute__((unused)) int cond)
 void setenv_help(void)
 
 /** Prototypes for finding path **/
