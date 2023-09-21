@@ -15,7 +15,7 @@ void env_create(char **env)
 }
 
 /**
- * free_env - This clears the env_var array
+ * env_free - This clears the env_var array
  * @env:  storage of array of env_var
  */
 

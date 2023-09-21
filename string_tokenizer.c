@@ -1,6 +1,6 @@
 #include "shell.h"
 /**
- * delim_check - Checking if any char matches
+ * delim_chk - Checking if any char matches
  * @ch: char in question
  * @str: delimeter strs
  * Return: 1 when successful otherwise 0

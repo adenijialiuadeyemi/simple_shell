@@ -1,12 +1,10 @@
 #include "shell.h"
-
 /**
  * main - Start of shell prog
  * @argc: argc
  * @argv: Argv
  * Return: cond_ret
  */
-
 int main(__attribute__((unused)) int argc, char **argv)
 {
 	char *us_input, **cmd, **cmds;
@@ -15,7 +13,6 @@ int main(__attribute__((unused)) int argc, char **argv)
 	if (argv[1] != NULL)
 		read_file(argv[1], argv);
 	signal(SIGINT, treat_signal);
-
 	while (cond)
 	{
 		cnt++;
@@ -41,9 +38,7 @@ int main(__attribute__((unused)) int argc, char **argv)
 				continue;
 			}
 			else
-			{
 				stat = check_cmd(cmd, us_input, cnt, argv);
-			}
 			free(cmd);
 		}
 		free(us_input);

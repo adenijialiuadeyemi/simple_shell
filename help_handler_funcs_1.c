@@ -44,7 +44,7 @@ void help_alias(void)
 }
 
 /**
- * help_cd - show help msg via the  builtin command 'cd'
+ * cd_help - show help msg via the  builtin command 'cd'
  */
 void cd_help(void)
 {

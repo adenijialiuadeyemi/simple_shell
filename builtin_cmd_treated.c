@@ -45,7 +45,7 @@ int builtin_handle(char **cmd, int cond)
 		{"env", show_env},
 		{"help", show_help},
 		{"echo", builtin_echo},
-		{"history", show_histry},
+		{"history", sh_history},
 		{NULL, NULL}
 	};
 	int c = 0;

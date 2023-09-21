@@ -3,7 +3,8 @@
  * change_dir - change_dir
  * @cmd: cmd in question
  * @cond: conditio of previosly executed cmd
- * Return: 0 when successful otherwise return 1 (For OLDPWD everytime 0 incase of no OLDPWD)
+ * Return: 0 when successful otherwise return 1
+ * (For OLDPWD everytime 0 incase of no OLDPWD)
  */
 int change_dir(char **cmd, __attribute__((unused))int cond)
 {
@@ -35,10 +36,10 @@ int change_dir(char **cmd, __attribute__((unused))int cond)
 /**
  * show_env - Show env_var
  * @cmd: cmd in question
- * @st: cond of previously exec cmd
+ * @s: cond of previously exec cmd
  * Return: 0 everytime
  */
-int show_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int cond)
+int show_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int s)
 {
 	size_t c;
 	int l;
@@ -85,12 +86,12 @@ int builtin_echo(char **cmd, int cond)
 	return (1);
 }
 /**
- * show_histry - show historical records of user inputs
+ * sh_history - show historical records of user inputs
  * @cmd: cmd in question
- * @cond: status of last command executed
+ * @s: status of last command executed
  * Return: 0 success or -1 if fail
  */
-int show_histry(__attribute__((unused))char **cmd, __attribute__((unused))int cond)
+int sh_history(__attribute__((unused))char **cmd, __attribute__((unused))int s)
 {
 	char *fname = ".simple_shell_history";
 	FILE *f_ptr;

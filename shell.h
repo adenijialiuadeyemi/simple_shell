@@ -55,7 +55,7 @@ char *space(char *str);
 char *enter(char *str);
 void hashtag_handler(char *bufer);
 void cmd_prompt(void);
-unsigned int check_delim(char c, const char *str);
+unsigned int delim_chk(char ch, const char *str);
 char *_strtok(char *strng, const char *delim);
 int cmd_history(char *us_input);
 char **sep_cmds(char *us_input);
@@ -118,10 +118,10 @@ void builtin_exit(char **cmd, char *us_input, char **argv, int cnt,
 		int cond);
 int change_dir(char **cmd, __attribute__((unused))int cond);
 int show_env(__attribute__((unused)) char **cmd,
-		__attribute__((unused)) int cond);
+		__attribute__((unused)) int s);
 int builtin_echo(char **cmd, int cond);
-int show_histry(__attribute__((unused))char **cmd,
-		__attribute__((unused)) int cond);
+int sh_history(__attribute__((unused))char **cmd,
+		__attribute__((unused)) int s);
 
 /****** This creates a structure that wouul be be used later *****/
 
