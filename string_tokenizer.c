@@ -1,63 +1,63 @@
 #include "shell.h"
 /**
- * check_delim - function that checks if a character matchs any character
- * @c: character to check
- * @str: string of delimiters
- * Return: 1 on success, 0 on failure
+ * delim_check - Checking if any char matches
+ * @ch: char in question
+ * @str: delimeter strs
+ * Return: 1 when successful otherwise 0
  */
-unsigned int check_delim(char c, const char *str)
+unsigned int delim_chk(char ch, const char *str)
 {
-	unsigned int i;
+	unsigned int c;
 
-	for (i = 0; str[i] != '\0'; i++)
+	for (c = 0; str[c] != '\0'; c++)
 	{
-		if (c == str[i])
+		if (ch == str[c])
 			return (1);
 	}
 	return (0);
 }
 /**
- * _strtok - function that extracts tokens of a string
- * @str: string
+ * _strtok - getting tokens from strs
+ * @strng: strng in ques
  * @delim: delimiter
- * Return: pointer to the next token or NULL
+ * Return: next_tok pointre
  */
-char *_strtok(char *str, const char *delim)
+char *_strtok(char *strng, const char *delim)
 {
-	static char *tokens;
-	static char *new_token;
-	unsigned int i;
+	static char *toks;
+	static char *tok_new;
+	unsigned int c;
 
-	if (str != NULL)
-		new_token = str;
-	tokens = new_token;
-	if (tokens == NULL)
+	if (strng != NULL)
+		tok_new = strng;
+	toks = tok_new;
+	if (toks == NULL)
 		return (NULL);
-	for (i = 0; tokens[i] != '\0'; i++)
+	for (c = 0; toks[c] != '\0'; c++)
 	{
-		if (check_delim(tokens[i], delim) == 0)
+		if (delim_chk(toks[c], delim) == 0)
 			break;
 	}
-	if (new_token[i] == '\0' || new_token[i] == '#')
+	if (tok_new[c] == '\0' || tok_new[c] == '#')
 	{
-		new_token = NULL;
+		tok_new = NULL;
 		return (NULL);
 	}
-	tokens = new_token + i;
-	new_token = tokens;
-	for (i = 0; new_token[i] != '\0'; i++)
+	toks = tok_new + c;
+	tok_new = toks;
+	for (c = 0; tok_new[c] != '\0'; c++)
 	{
-		if (check_delim(new_token[i], delim) == 1)
+		if (delim_chk(tok_new[c], delim) == 1)
 			break;
 	}
-	if (new_token[i] == '\0')
-		new_token = NULL;
+	if (tok_new[c] == '\0')
+		tok_new = NULL;
 	else
 	{
-		new_token[i] = '\0';
-		new_token = new_token + i + 1;
-		if (*new_token == '\0')
-			new_token = NULL;
+		tok_new[c] = '\0';
+		tok_new = tok_new + c + 1;
+		if (*tok_new == '\0')
+			tok_new = NULL;
 	}
-	return (tokens);
+	return (toks);
 }

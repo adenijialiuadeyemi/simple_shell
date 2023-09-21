@@ -47,7 +47,7 @@ int _isalpha(int ch)
 	}
 }
 /**
- * _itoa - int to char converter 
+ * _itoa - int to char converter
  * @n: int in question
  * Return: character ptr
  */

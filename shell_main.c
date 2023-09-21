@@ -44,7 +44,6 @@ int main(__attribute__((unused)) int argc, char **argv)
 			{
 				stat = check_cmd(cmd, us_input, cnt, argv);
 			}
-			
 			free(cmd);
 		}
 		free(us_input);

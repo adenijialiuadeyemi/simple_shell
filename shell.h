@@ -56,7 +56,7 @@ char *enter(char *str);
 void hashtag_handler(char *bufer);
 void cmd_prompt(void);
 unsigned int check_delim(char c, const char *str);
-char *_strtok(char *str, const char *delim);
+char *_strtok(char *strng, const char *delim);
 int cmd_history(char *us_input);
 char **sep_cmds(char *us_input);
 

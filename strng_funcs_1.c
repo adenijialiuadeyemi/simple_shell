@@ -24,9 +24,9 @@ void _putstrng(char *strng)
 	_putchar('\n');
 }
 /**
- * _strncpy - copying a number of strng 
+ * _strncpy - copying a number of strng
  * @destin: str_destin
- * @sorce: str_sorce 
+ * @sorce: str_sorce
  * @n: size of chars to cpy
  * Return: strng_copied
  */
