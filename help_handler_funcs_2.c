@@ -45,11 +45,11 @@ void unsetenv_help(void)
 int show_help(char **cmd, __attribute__((unused))int cond)
 {
 	if (!cmd[1])
-		help_all();
+		all_help();
 	else if (_strngcmp(cmd[1], "alias") == 0)
 		help_alias();
 	else if (_strngcmp(cmd[1], "cd") == 0)
-		help_cd();
+		cd_help();
 	else if (_strngcmp(cmd[1], "exit") == 0)
 		help_exit();
 	else if (_strngcmp(cmd[1], "env") == 0)
