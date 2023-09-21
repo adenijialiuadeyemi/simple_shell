@@ -47,9 +47,9 @@ void handle_file(char *line, int c, FILE *f_pt, char **argv)
 	cmd = parse_cmd(line);
 	if (_strncmp(cmd[0], "exit", 4) == 0)
 		exit_bool_file(cmd, line, f_pt);
-	else if (check_builtin(cmd) == 0)
+	else if (builtin_chk(cmd) == 0)
 	{
-		cond = handle_builtin(cmd, cond);
+		cond = builtin_handle(cmd, cond);
 		free(cmd);
 	}
 	else

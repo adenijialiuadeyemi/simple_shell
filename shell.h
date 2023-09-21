@@ -112,10 +112,10 @@ int display_help(char **cmd, __attribute__((unused))int st);
 
 /****** Prototypes that handles built in cmd and exec ******/
 
-int check_builtin(char **cmd);
-int handle_builtin(char **cmd, int st);
-void exit_bul(char **cmd, char *input, char **argv, int c,
-		int stat);
+int builtin_chk(char **cmd);
+int builtin_handle(char **cmd, int cond);
+void builtin_exit(char **cmd, char *us_input, char **argv, int cnt,
+		int cond);
 int change_dir(char **cmd, __attribute__((unused))int st);
 int dis_env(__attribute__((unused)) char **cmd,
 		__attribute__((unused)) int st);

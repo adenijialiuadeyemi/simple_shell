@@ -32,11 +32,11 @@ int main(__attribute__((unused)) int argc, char **argv)
 			if (_strngcmp(cmd[0], "exit") == 0)
 			{
 				free(cmds);
-				exit_bul(cmd, us_input, argv, cnt, stat);
+				builtin_exit(cmd, us_input, argv, cnt, stat);
 			}
-			else if (check_builtin(cmd) == 0)
+			else if (builtin_chk(cmd) == 0)
 			{
-				stat = handle_builtin(cmd, stat);
+				stat = builtin_handle(cmd, stat);
 				free(cmd);
 				continue;
 			}

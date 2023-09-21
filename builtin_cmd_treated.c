@@ -1,12 +1,12 @@
 #include "shell.h"
 
 /**
- * check_builtin - Checks if parsed command in built-in
- * @cmd: Parsed command to be check
- * Return: 0 Succes -1 Fail
+ * builtin_chk - search whether the cmd is built in or not
+ * @cmd: cmd in question
+ * Return: 0 whensuccessful otherwise return -1
  */
 
-int check_builtin(char **cmd)
+int builtin_chk(char **cmd)
 {
 	builtin fun[] = {
 		{"cd", NULL},
@@ -16,29 +16,29 @@ int check_builtin(char **cmd)
 		{"history", NULL},
 		{NULL, NULL}
 	};
-	int i = 0;
+	int c = 0;
 
 	if (*cmd == NULL)
 	{
 		return (-1);
 	}
-	while ((fun + i)->command)
+	while ((fun + c)->command)
 	{
-		if (_strngcmp(cmd[0], (fun + i)->command) == 0)
+		if (_strngcmp(cmd[0], (fun + c)->command) == 0)
 			return (0);
-		i++;
+		c++;
 	}
 	return (-1);
 }
 
 /**
- * handle_builtin - Handles predefined built in commands
- * @cmd: Array of parsed command strings
- * @st: Status of last execution
- * Return: -1 Failure 0 Success
+ * builtin_handle - resolve built in that are custom
+ * @cmd: parsed_cmd_str arr
+ * @cond: cond of previous exec
+ * Return: 0  when Successful
  */
 
-int handle_builtin(char **cmd, int st)
+int builtin_handle(char **cmd, int cond)
 {
 	builtin built_in[] = {
 		{"cd", change_dir},
@@ -48,60 +48,60 @@ int handle_builtin(char **cmd, int st)
 		{"history", history_dis},
 		{NULL, NULL}
 	};
-	int i = 0;
+	int c = 0;
 
-	while ((built_in + i)->command)
+	while ((built_in + c)->command)
 	{
-		if (_strngcmp(cmd[0], (built_in + i)->command) == 0)
+		if (_strngcmp(cmd[0], (built_in + c)->command) == 0)
 		{
-			return ((built_in + i)->function(cmd, st));
+			return ((built_in + c)->function(cmd, cond));
 		}
-		i++;
+		c++;
 	}
 	return (-1);
 }
 
 /**
- * exit_bul - Exit Status for built-in commands
- * @cmd: Array of parsed command strings
- * @input: Input recieved from user (to be freed)
- * @argv: Arguments before program starts(argv[0] == Shell Program Name)
- * @c: Shell execution count
- * @stat: Exit status
+ * builtin_exit - exit_clond for buitin cmds
+ * @cmd: cmd in quest
+ * @us_input: user_input needed to be freed
+ * @argv: Args prior to prog init(argv[0] == prog name for shel)
+ * @cnt: counter
+ * @cond: cond of exit
  */
 
-void exit_bul(char **cmd, char *input, char **argv, int c, int stat)
+void builtin_exit(char **cmd, char *us_input, char **argv, int cnt, int cond)
 {
-	int status, i = 0;
+	int cond1, c = 0;
 
 	if (cmd[1] == NULL)
 	{
-		free(input);
+		free(us_input);
 		free(cmd);
-		exit(stat);
+		exit(cond);
 	}
-	while (cmd[1][i])
+	while (cmd[1][c])
 	{
-		if (_isalpha(cmd[1][i++]) != 0)
+		if (_isalpha(cmd[1][c++]) != 0)
 		{
-			cust_err(argv, c, cmd);
-			free(input);
+			cust_err(argv, cnt, cmd);
+			free(us_input);
 			free(cmd);
 			exit(2);
 		}
 		else
 		{
-			status = _atoi(cmd[1]);
-			if (status == 2)
+			cond1 = _atoi(cmd[1]);
+			if (cond1 == 2)
 			{
-				cust_err(argv, c, cmd);
-				free(input);
+				cust_err(argv, cnt, cmd);
+				free(us_input);
 				free(cmd);
-				exit(status);
+				exit(cond1);
 			}
-			free(input);
+			free(us_input);
 			free(cmd);
-			exit(status);
+			exit(cond1);
 		}
 	}
 }
