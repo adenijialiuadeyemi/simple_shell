@@ -116,12 +116,12 @@ int builtin_chk(char **cmd);
 int builtin_handle(char **cmd, int cond);
 void builtin_exit(char **cmd, char *us_input, char **argv, int cnt,
 		int cond);
-int change_dir(char **cmd, __attribute__((unused))int st);
-int dis_env(__attribute__((unused)) char **cmd,
-		__attribute__((unused)) int st);
-int echo_bul(char **cmd, int st);
-int history_dis(__attribute__((unused))char **c,
-		__attribute__((unused)) int st);
+int change_dir(char **cmd, __attribute__((unused))int cond);
+int show_env(__attribute__((unused)) char **cmd,
+		__attribute__((unused)) int cond);
+int builtin_echo(char **cmd, int cond);
+int show_histry(__attribute__((unused))char **cmd,
+		__attribute__((unused)) int cond);
 
 /****** This creates a structure that wouul be be used later *****/
 

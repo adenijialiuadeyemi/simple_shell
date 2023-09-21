@@ -1,30 +1,30 @@
 #include "shell.h"
 /**
- * change_dir - Changes directory
- * @cmd: Parsed command
- * @st: Status of last command executed
- * Return: 0 on success 1 if failed (For OLDPWD Always 0 incase of no OLDPWD)
+ * change_dir - change_dir
+ * @cmd: cmd in question
+ * @cond: conditio of previosly executed cmd
+ * Return: 0 when successful otherwise return 1 (For OLDPWD everytime 0 incase of no OLDPWD)
  */
-int change_dir(char **cmd, __attribute__((unused))int st)
+int change_dir(char **cmd, __attribute__((unused))int cond)
 {
-	int value = -1;
+	int val = -1;
 	char cwd[PATH_MAX];
 
 	if (cmd[1] == NULL)
-		value = chdir(getenv("HOME"));
+		val = chdir(getenv("HOME"));
 	else if (_strngcmp(cmd[1], "-") == 0)
 	{
-		value = chdir(getenv("OLDPWD"));
+		val = chdir(getenv("OLDPWD"));
 	}
 	else
-		value = chdir(cmd[1]);
+		val = chdir(cmd[1]);
 
-	if (value == -1)
+	if (val == -1)
 	{
 		perror("hsh");
 		return (-1);
 	}
-	else if (value != -1)
+	else if (val != -1)
 	{
 		getcwd(cwd, sizeof(cwd));
 		setenv("OLDPWD", getenv("PWD"), 1);
@@ -33,38 +33,38 @@ int change_dir(char **cmd, __attribute__((unused))int st)
 	return (0);
 }
 /**
- * dis_env - Display enviroment variable
- * @cmd: parsed command
- * @st: status of last command executed
- * Return: Always 0
+ * show_env - Show env_var
+ * @cmd: cmd in question
+ * @st: cond of previously exec cmd
+ * Return: 0 everytime
  */
-int dis_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int st)
+int show_env(__attribute__((unused)) char **cmd, __attribute__((unused)) int cond)
 {
-	size_t i;
-	int len;
+	size_t c;
+	int l;
 
-	for (i = 0; environ[i] != NULL; i++)
+	for (c = 0; environ[c] != NULL; c++)
 	{
-		len = _strlen(environ[i]);
-		write(1, environ[i], len);
+		l = _strlen(environ[c]);
+		write(1, environ[c], l);
 		write(STDOUT_FILENO, "\n", 1);
 	}
 	return (0);
 }
 /**
- * echo_bul - execute echo cases
- * @st: statue of last command executed
- * @cmd: parsed command
- * Return: Always 1 Or execute normal echo
+ * builtin_echo - perform cases of echo
+ * @cond: cond of previously exxec cmds
+ * @cmd: cmd in question
+ * Return: echo execution otherwise return 1
  */
-int echo_bul(char **cmd, int st)
+int builtin_echo(char **cmd, int cond)
 {
-	char *path;
+	char *pth;
 	unsigned int pid = getppid();
 
 	if (_strncmp(cmd[1], "$?", 2) == 0)
 	{
-		num_print_int(st);
+		num_print_int(cond);
 		PRINT("\n");
 	}
 	else if (_strncmp(cmd[1], "$$", 2) == 0)
@@ -74,10 +74,10 @@ int echo_bul(char **cmd, int st)
 	}
 	else if (_strncmp(cmd[1], "$PATH", 5) == 0)
 	{
-		path = _envget("PATH");
-		PRINT(path);
+		pth = _envget("PATH");
+		PRINT(pth);
 		PRINT("\n");
-		free(path);
+		free(pth);
 	}
 	else
 		return (echo_print(cmd));
@@ -85,29 +85,29 @@ int echo_bul(char **cmd, int st)
 	return (1);
 }
 /**
- * history_dis - display history of user input on simple_shell
- * @c: parsed command
- * @st: status of last command executed
+ * show_histry - show historical records of user inputs
+ * @cmd: cmd in question
+ * @cond: status of last command executed
  * Return: 0 success or -1 if fail
  */
-int history_dis(__attribute__((unused))char **c, __attribute__((unused))int st)
+int show_histry(__attribute__((unused))char **cmd, __attribute__((unused))int cond)
 {
-	char *filename = ".simple_shell_history";
-	FILE *fp;
+	char *fname = ".simple_shell_history";
+	FILE *f_ptr;
 	char *line = NULL;
-	size_t len = 0;
-	int counter = 0;
+	size_t l = 0;
+	int c = 0;
 	char *er;
 
-	fp = fopen(filename, "r");
-	if (fp == NULL)
+	f_ptr = fopen(fname, "r");
+	if (f_ptr == NULL)
 	{
 		return (-1);
 	}
-	while ((getline(&line, &len, fp)) != -1)
+	while ((getline(&line, &l, f_ptr)) != -1)
 	{
-		counter++;
-		er = _itoa(counter);
+		c++;
+		er = _itoa(c);
 		PRINT(er);
 		free(er);
 		PRINT(" ");
@@ -115,6 +115,6 @@ int history_dis(__attribute__((unused))char **c, __attribute__((unused))int st)
 	}
 	if (line)
 		free(line);
-	fclose(fp);
+	fclose(f_ptr);
 	return (0);
 }
