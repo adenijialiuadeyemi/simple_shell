@@ -1,10 +1,8 @@
-#include "main.h"
+#include "shell.h"
 /**
- * cmd_prompt - The func print '$' to std output
- *
- * Return: void
+ * cmd_prompt - The func displays '$' as output
  */
 void cmd_prompt(void)
 {
-PRINT("$ ");
+	PRINT("$ ");
 }

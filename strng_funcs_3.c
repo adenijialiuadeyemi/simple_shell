@@ -1,115 +1,114 @@
-#include "main.h"
+#include "shell.h"
 /**
- * _strcmp - The function compares two strngs
- * @strng1: Strng one
- * @strng2: Strng two
- * Return: 0 when they are the same
+ * _strngcmp - check if 2two strngs are same
+ * @str1: str2
+ * @str2: str2
+ * Return: 0 when successful otherwise another thing
  */
-int _strcmp(char *strng1, char *strng2)
+int _strngcmp(char *str1, char *str2)
 {
-int compre = 0, count_i, len1, len2;
+	int cmpre = 0, c, l1, l2;
 
-len1 = _strlen(strng1);
-len2 = _strlen(strng2);
+	l1 = _strlen(str1);
+	l2 = _strlen(str2);
 
-if (strng1 == NULL || strng2 == NULL)
-	return (1);
+	if (str1 == NULL || str2 == NULL)
+		return (1);
 
-if (len1 != len2)
-	return (1);
+	if (l1 != l2)
+		return (1);
 
-for (count_i = 0; strng1[count_i]; count_i++)
-{
-if (strng1[count_i] != strng2[count_i])
-{
-compre = strng1[count_i] - strng2[count_i];
-break;
-}
-else
-	continue;
-}
-return (compre);
+	for (c = 0; str1[c]; c++)
+	{
+		if (str1[c] != str2[c])
+		{
+			cmpre = str1[c] - str2[c];
+			break;
+		}
+		else
+			continue;
+	}
+	return (cmpre);
 }
 /**
- * _isalpha - This func checks if ch is a char
- * @ch: checked char
- * Return: 1 when it is true otherwise return 0
+ * _isalpha - checking alphabetic entry
+ * @ch: letterin question
+ * Return: 1 when true otherwise 0
  */
 int _isalpha(int ch)
 {
-if (((ch >= 97) && (ch <= 122)) || ((ch >= 65) && (ch <= 90)))
-{
-return (1);
-}
-else
-{
-return (0);
-}
-}
-/**
- * _itoa - This function converts integer to alphabet
- * @num: converted integer
- * Return: pointer char
- */
-char *_itoa(unsigned int num)
-{
-int len = 0, count_i = 0;
-char *strng;
-
-len = intlen(num);
-strng = malloc(len + 2);
-
-if (!strng)
-{
-free(strng);
-return (NULL);
-}
-*strng = '\0';
-
-while (num / 10)
-{
-strng[count_i] = (num % 10) + '0';
-num /= 10;
-count_i++;
-}
-
-strng[count_i] = (num % 10) + '0';
-array_rev(strng, len);
-strng[count_i + 1] = '\0';
-
-return (strng);
+	if (((ch >= 97) && (ch <= 122)) || ((ch >= 65) && (ch <= 90)))
+	{
+		return (1);
+	}
+	else
+	{
+		return (0);
+	}
 }
 /**
- * array_rev - These function reverses an array
- * @arr: reversed arr
- * @len: array length
+ * _itoa - int to char converter 
+ * @n: int in question
+ * Return: character ptr
  */
-void array_rev(char *arr, int len)
+char *_itoa(unsigned int n)
 {
-int count_i;
-char temp;
+	int l = 0, c = 0;
+	char *str;
 
-for (count_i = 0; count_i < (len / 2); count_i++)
-{
-temp = arr[count_i];
-arr[count_i] = arr[(len - 1) - count_i];
-arr[(len - 1) - count_i] = temp;
-}
+	l = intlen(n);
+	str = malloc(l + 2);
+
+	if (!str)
+	{
+		free(str);
+		return (NULL);
+	}
+	*str = '\0';
+
+	while (n / 10)
+	{
+		str[c] = (n % 10) + '0';
+		n /= 10;
+		c++;
+	}
+
+	str[c] = (n % 10) + '0';
+	rev_arr(str, l);
+	str[c + 1] = '\0';
+
+	return (str);
 }
 /**
- * intlen - This function determines the length of int
- * @num: integer in question
- * Return: integer length
+ * rev_arr - outut arr frm behind
+ * @arr: arr in quest
+ * @len: arr_len
  */
-int intlen(int num)
+void rev_arr(char *arr, int len)
 {
-int len = 0;
+	int c;
+	char tmp;
 
-while (num != 0)
+	for (c = 0; c < (len / 2); c++)
+	{
+		tmp = arr[c];
+		arr[c] = arr[(len - 1) - c];
+		arr[(len - 1) - c] = tmp;
+	}
+}
+/**
+ * intlen - getting int length
+ * @n: int in question
+ * Return: int_len
+ */
+int intlen(int n)
 {
-len++;
-num /= 10;
-}
-return (len);
-}
+	int l = 0;
 
+	while (n != 0)
+	{
+		l++;
+		n /= 10;
+	}
+	return (l);
+}

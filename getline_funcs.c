@@ -1,103 +1,103 @@
-#include "main.h"
+#include "shell.h"
 /**
- * _getline - This takes whatever the user entered
- * Return: the user input in a bufer
- */
+* _getline - showing what the user enters
+* Return: buf input
+*/
 char *_getline()
 {
-int i, res_read, bufer_size = BUFSIZE;
-char ch = 0, *bufer, *buf;
-bufer = malloc(bufer_size);
-if (bufer == NULL)
-{
-free(bufer);
-return (NULL);
-}
-for (i = 0; ch != EOF && ch != '\n'; i++)
-{
-fflush(stdin);
-res_read = read(STDIN_FILENO, &ch, 1);
-if (res_read == 0)
-{
-free(bufer);
-exit(EXIT_SUCCESS);
-}
-bufer[i] = ch;
-if (bufer[0] == '\n')
-	return (enter(bufer));
-if (i >= bufer_size)
-{
-bufer = realloc(bufer, (bufer_size + 2));
-if (bufer == NULL)
-{
-free(bufer);
-return (NULL);
-}
-}
-}
-bufer[i] = '\0';
-buf = space(bufer);
-free(bufer);
-hashtag_treated(buf);
-return (buf);
+	int c, rd, buf_size = BUFSIZE;
+	char ch = 0, *bufer, *buf;
+
+	bufer = malloc(buf_size);
+	if (bufer == NULL)
+	{
+		free(bufer);
+		return (NULL);
+	}
+	for (c = 0; ch != EOF && ch != '\n'; c++)
+	{
+		fflush(stdin);
+		rd = read(STDIN_FILENO, &ch, 1);
+		if (rd == 0)
+		{
+			free(bufer);
+			exit(EXIT_SUCCESS);
+		}
+		bufer[c] = ch;
+		if (bufer[0] == '\n')
+			return (enter(bufer));
+		if (c >= buf_size)
+		{
+			bufer = realloc(bufer, (buf_size + 2));
+			if (bufer == NULL)
+			{
+				free(bufer);
+				return (NULL);
+			}
+		}
+	}
+	bufer[c] = '\0';
+	buf = space(bufer);
+	free(bufer);
+	hashtag_handler(buf);
+	return (buf);
 }
 /**
- * enter - This caters for NewLine
- * @strng: Strng in question
- * Return: clear strng
+ * enter - when enter is pressed
+ * @str: Str in quest
+ * Return: empty_str
  */
-char *enter(char *strng)
+char *enter(char *str)
 {
-free(strng);
-return ("\0");
+	free(str);
+	return ("\0");
 }
 
 /**
- * space - This clears spaces before the actual strngs
- * @strng: strng in question
- * Return: Modified strng
+ * space - treating whitesp before a str
+ * @str: str in quest
+ * Return: edited str
  */
-char *space(char *strng)
+char *space(char *str)
 {
-int i, j = 0;
-char *bufer;
+	int m, n = 0;
+	char *bufer;
 
-bufer = malloc(sizeof(char) * (_strlen(strng) + 1));
-if (bufer == NULL)
-{
-free(bufer);
-return (NULL);
-}
-for (i = 0; strng[i] == ' '; i++)
-;
-for (; strng[i + 1] != '\0'; i++)
-{
-bufer[j] = strng[i];
-j++;
-}
-bufer[j] = '\0';
-if (bufer[0] == '\0' || bufer[0] == '#')
-{
-free(bufer);
-return ("\0");
-}
-return (bufer);
+	bufer = malloc(sizeof(char) * (_strlen(str) + 1));
+	if (bufer == NULL)
+	{
+		free(bufer);
+		return (NULL);
+	}
+	for (m = 0; str[m] == ' '; m++)
+		;
+	for (; str[m + 1] != '\0'; m++)
+	{
+		bufer[n] = str[m];
+		n++;
+	}
+	bufer[n] = '\0';
+	if (bufer[0] == '\0' || bufer[0] == '#')
+	{
+		free(bufer);
+		return ("\0");
+	}
+	return (bufer);
 }
 /**
- * hashtag_treated - This clears all chars before the '#' tag
- * @bufer: bufer input
+ * hashtag_handler - rem all after hass tag
+ * @bufer: buf inpu
  * Return: void
  */
-void hashtag_treated(char *bufer)
+void hashtag_handler(char *bufer)
 {
-int c;
+	int c;
 
-for (c = 0; bufer[c] != '\0'; c++)
-{
-if (bufer[c] == '#' && bufer[c - 1] == ' ' && bufer[c + 1] == ' ')
-{
-bufer[c] = '\0';
+	for (c = 0; bufer[c] != '\0'; c++)
+	{
+		if (bufer[c] == '#' && bufer[c - 1] == ' ' && bufer[c + 1] == ' ')
+		{
+			bufer[c] = '\0';
+		}
+	}
 }
-}
-}
-

@@ -1,28 +1,27 @@
-#include "main.h"
+#include "shell.h"
 /**
- * history - The function output doc with input of users
- * @user_input: input of user
- * Return: 0 when successful, otherwise -1
+ * cmd_history - Past user cmds
+ * @us_input: user_inp
+ * Return: 0 when successful otherwise -1
  */
-int history(char *user_input)
+int cmd_history(char *us_input)
 {
-int len = 0;
-char *fn = ".history_simple_shell";
-ssize_t file_descr, ret_write;
+	char *fname = ".simple_shell_history";
+	ssize_t fd, ret_wr;
+	int len = 0;
 
-if (!fn)
-	return (-1);
-file_descr = open(fn, O_CREAT | O_RDWR | O_APPEND, 00600);
-if (file_descr < 0)
-	return (-1);
-if (user_input)
-{
-while (user_input[len])
-	len++;
-ret_write = write(file_descr, user_input, len);
-if (ret_write < 0)
-	return (-1);
+	if (!fname)
+		return (-1);
+	fd = open(fname, O_CREAT | O_RDWR | O_APPEND, 00600);
+	if (fd < 0)
+		return (-1);
+	if (us_input)
+	{
+		while (us_input[len])
+			len++;
+		ret_wr = write(fd, us_input, len);
+		if (ret_wr < 0)
+			return (-1);
+	}
+	return (1);
 }
-return (1);
-}
-

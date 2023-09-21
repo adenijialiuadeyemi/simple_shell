@@ -1,5 +1,5 @@
-#ifndef _MAIN_H_
-#define _MAIN_H_
+#ifndef MAIN_H
+#define MAIN_H
 
 /***** Used Macros *****/
 #define PRINT(c) (write(STDERR_FILENO, c, _strlen(c)))
@@ -19,40 +19,30 @@
 #include <errno.h>
 #include <linux/limits.h>
 
-/***** Functions that handle file args ******/
-
-void read_the_doc(char *doc, char **argv)
-void handle_doc(char *line, int cnt, FILE *file_pointre, char **argv)
-void exit_doc_cond(char **cmd, char *line, FILE *file_pointre)
-
-/****** functions that handle passed args *****/
-
-void signal_to_be_treated(int treated_sig)
-int cmd_chk(char **cmd, char *user_input, int tc, char **argv)
-
 /******** FUNCTIONS THAT ARE STRING RELATED **********/
 
-/* strng_func1.c */
-
-int _putchar(char ch)
-void _puts(char *strng)
 char *_strncpy(char *destin, char *sorce, int count_n)
-int _atoi(char *strng)
 int _strlen(char *strng)
-
-/* strng_func2.c */
+int _putchar(char ch)
+int _atoi(char *strng)
+void _puts(char *strng)
+int _strcmp(char *strng1, char *strng2)
+int _isalpha(int ch)
 
 char *_strcpy(char *destin, char *sorce)
 char *_strcat(char *destin, char *sorce)
+
 int _strncmp(const char *strng1, const char *strng2, size_t c)
 char *_strchr(char *strng, char ch)
 char *_strdup(char *strng)
 
-/* strng_func2.c */
+/* Prototype of funcs that handle mem */
 
-int _strcmp(char *strng1, char *strng2)
-int _isalpha(int ch)
-char *_strdup(char *strng)
+void *_realloc(void *ptr, unsigned int size_old, unsigned int size_new)
+void free_all(char **cmd, char *line)
+char *_memcpy(char *destin, char *sorce, unsigned int n)
+void *fill_an_array(void *a, int el, unsigned int len)
+void *_calloc(unsigned int size)
 
 /* Prototypes for Input functions and other related ones */
 
@@ -66,6 +56,16 @@ char **separator(char *user_input)
 char *enter(char *strng)
 char *space(char *strng)
 void hashtag_treated(char *bufer)
+
+/***** Functions that handle file args ******/
+
+void read_the_doc(char *doc, char **argv)
+void handle_doc(char *line, int cnt, FILE *file_pointre, char **argv)
+void exit_doc_cond(char **cmd, char *line, FILE *file_pointre)
+
+
+void signal_to_be_treated(int treated_sig)
+int cmd_chk(char **cmd, char *user_input, int tc, char **argv)
 
 /* Prototypes of functions that handles errors */
 
@@ -113,14 +113,6 @@ char *_getenv(char *env_name)
 void print_number(unsigned int num)
 void print_number_int(int num)
 int print_echo(char **cmd)
-
-/* Prototype of funcs that handle mem */
-
-void *_realloc(void *ptr, unsigned int size_old, unsigned int size_new)
-void free_all(char **cmd, char *line)
-char *_memcpy(char *destin, char *sorce, unsigned int n)
-void *fill_an_array(void *a, int el, unsigned int len)
-void *_calloc(unsigned int size)
 
 /* Struct for inbuilt cmds */
 

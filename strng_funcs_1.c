@@ -1,91 +1,92 @@
-#include "main.h"
+#include "shell.h"
 /**
- * _putchar - This function output the char in std output
- * @ch: The printed char
- * Return: char to std_output
+ * _putchar - This function output char
+ * @ch: printed char
+ * Return: ch
  */
 int _putchar(char ch)
 {
-return (write(1, &ch, 1));
+	return (write(1, &ch, 1));
 }
 /**
- * _puts - function that prints a string
- * @strng: pointer to string
- * Return: void
+ * _putstrng - The func outut strs
+ * @strng: str pointer
+ * Return: nothing
  */
-void _puts(char *strng)
+void _putstrng(char *strng)
 {
-int count_i;
+	int c;
 
-for (count_i = 0; strng[count_i] != '\0'; count_i++)
-{
-_putchar(strng[count_i]);
-}
-_putchar('\n');
+	for (c = 0; strng[c] != '\0'; c++)
+	{
+		_putchar(strng[c]);
+	}
+	_putchar('\n');
 }
 /**
- * _strncpy - The func moves a strng from sorce to destin
- * @destin: The destin strng
- * @sorce: The sorce strng
- * @count_n: count of chars to be moved
- * Return: strngs moved
+ * _strncpy - copying a number of strng 
+ * @destin: str_destin
+ * @sorce: str_sorce 
+ * @n: size of chars to cpy
+ * Return: strng_copied
  */
-char *_strncpy(char *destin, char *sorce, int count_n)
+char *_strncpy(char *destin, char *sorce, int n)
 {
-int count_i = 0;
+	int c = 0;
 
-while (count_i < count_n && *(sorce + count_i))
-{
-*(destin + count_i) = *(sorce + count_i);
-count_i++;
-}
-while (count_i < count_n)
-{
-*(destin + count_i) = '\0';
-count_i++;
-}
-return (destin);
+	while (c < n && *(sorce + c))
+	{
+		*(destin + c) = *(sorce + c);
+		c++;
+	}
+	while (c < n)
+	{
+		*(destin + c) = '\0';
+		c++;
+	}
+	return (destin);
 }
 /**
- * _strlen - function that counts the length of a string
- * @strng: string input
- * Return: length of string
+ * _strlen - size of the strng
+ * @strng: input_str
+ * Return: str_length
  */
 int _strlen(char *strng)
 {
-int count_i;
+	int c;
 
-for (count_i = 0; strng[count_i] != '\0'; count_i++)
-{
-continue;
-}
-return (count_i);
+	for (c = 0; strng[c] != '\0'; c++)
+	{
+		continue;
+	}
+	return (c);
 }
 /**
- * _atoi - Func to transform a word to a number
- * @strng: input strng
- * Return: int converted
+ * _atoi - Strng to Int conversion
+ * @strng: strng in question
+ * Return: int
  */
 int _atoi(char *strng)
 {
-int m = 0, n = 1, p;
-unsigned int l = 0;
+	int m = 0, n = 1, k;
+	unsigned int c = 0;
 
-while (strng[m] != '\0')
-{
-if (strng[m] == '-')
-{
-return (2);
-}
-p = strng[m] - '0';
+	while (strng[m] != '\0')
+	{
+		if (strng[m] == '-')
+		{
+			return (2);
+		}
+		k = strng[m] - '0';
 
-if (l > 0 && !(p >= 0 && p <= 9))
-	break;
-if (p >= 0 && p <= 9)
-	l = l * 10 + p;
-m++;
-}
-l *= n;
-return (l);
-}
+		if (c > 0 && !(k >= 0 && k <= 9))
+			break;
 
+		if (k >= 0 && k <= 9)
+			c = c * 10 + k;
+
+		m++;
+	}
+	c *= n;
+	return (c);
+}
