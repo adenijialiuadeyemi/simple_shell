@@ -1,49 +1,48 @@
 #include "shell.h"
 /**
- * help_env - Displays information on the shell by builtin command 'env'
+ * env_help - show help msg on the shell via builtin cmd 'env'
  */
-void help_env(void)
+void env_help(void)
 {
-	char *msg = "env: env\n\tPrints the current environment.\n";
+	char *info = "env: env\n\tPrints the current environment.\n";
 
-	write(STDOUT_FILENO, msg, _strlen(msg));
+	write(STDOUT_FILENO, info, _strlen(info));
 }
 
 /**
- * help_setenv - Displays information on the shell by builtin command 'setenv'
+ * help_setenv - show help msg via 'setenv' builtin cmd
  */
 void help_setenv(void)
 {
-	char *msg = "setenv: setenv [VARIABLE] [VALUE]\n\tInitializes a new";
+	char *info = "setenv: setenv [VARIABLE] [VALUE]\n\tInitializes a new";
 
-	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "environment variable, or modifies an existing one.\n\n";
-	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "\tUpon failure, prints a message to stderr.\n";
-	write(STDOUT_FILENO, msg, _strlen(msg));
+	write(STDOUT_FILENO, info, _strlen(info));
+	info = "environment variable, or modifies an existing one.\n\n";
+	write(STDOUT_FILENO, info, _strlen(info));
+	info = "\tUpon failure, prints a message to stderr.\n";
+	write(STDOUT_FILENO, info, _strlen(info));
 }
 
 /**
- * help_unsetenv - Displays information on the shellby builtin command
- * 'unsetenv'
+ * unsetenv_help - show help msg via 'unsetenv' builtin cmd 'unsetenv'
  */
-void help_unsetenv(void)
+void unsetenv_help(void)
 {
-	char *msg = "unsetenv: unsetenv [VARIABLE]\n\tRemoves an ";
+	char *info = "unsetenv: unsetenv [VARIABLE]\n\tRemoves an ";
 
-	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "environmental variable.\n\n\tUpon failure, prints a ";
-	write(STDOUT_FILENO, msg, _strlen(msg));
-	msg = "message to stderr.\n";
-	write(STDOUT_FILENO, msg, _strlen(msg));
+	write(STDOUT_FILENO, info, _strlen(info));
+	info = "environmental variable.\n\n\tUpon failure, prints a ";
+	write(STDOUT_FILENO, info, _strlen(info));
+	info = "message to stderr.\n";
+	write(STDOUT_FILENO, info, _strlen(info));
 }
 /**
- * display_help - display help for builtin commands
- * @cmd: parsed command
- * @st: Status of last command executed
- * Return: 0 Success
+ * show_help - show help msg for  builtin cmds
+ * @cmd: cmd in quest
+ * @cond: cond of previously executed cmd
+ * Return: 0 when successful
  */
-int display_help(char **cmd, __attribute__((unused))int st)
+int show_help(char **cmd, __attribute__((unused))int cond)
 {
 	if (!cmd[1])
 		help_all();
@@ -54,11 +53,11 @@ int display_help(char **cmd, __attribute__((unused))int st)
 	else if (_strngcmp(cmd[1], "exit") == 0)
 		help_exit();
 	else if (_strngcmp(cmd[1], "env") == 0)
-		help_env();
+		env_help();
 	else if (_strngcmp(cmd[1], "setenv") == 0)
 		help_setenv();
 	else if (_strngcmp(cmd[1], "unsetenv") == 0)
-		help_unsetenv();
+		unsetenv_help();
 	else if (_strngcmp(cmd[1], "help") == 0)
 		help_help();
 	return (0);

@@ -99,16 +99,16 @@ char *_envget(char *env_n);
 
 /******* prototypes that handles help *******/
 
-void help_env(void);
+void env_help(void);
 void help_setenv(void);
-void help_unsetenv(void);
+void unsetenv_help(void);
 void help_history(void);
 void help_all(void);
 void help_alias(void);
 void help_cd(void);
 void help_exit(void);
 void help_help(void);
-int display_help(char **cmd, __attribute__((unused))int st);
+int show_help(char **cmd, __attribute__((unused))int cond);
 
 /****** Prototypes that handles built in cmd and exec ******/
 

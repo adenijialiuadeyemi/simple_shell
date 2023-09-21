@@ -43,7 +43,7 @@ int builtin_handle(char **cmd, int cond)
 	builtin built_in[] = {
 		{"cd", change_dir},
 		{"env", show_env},
-		{"help", display_help},
+		{"help", show_help},
 		{"echo", builtin_echo},
 		{"history", show_histry},
 		{NULL, NULL}
